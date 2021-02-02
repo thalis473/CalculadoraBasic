@@ -7,24 +7,26 @@ def home():
     if (request.method =="GET"):
         return render_template("index.html")
     else:
-        if(request.form["num1"] != "" and request.form["num2"] != ""):
-            num1=request.form["num1"]
-            num2=request.form["num2"]
+        if(request.form["input1"] != "" and request.form["input2"] != ""):
+            num1=request.form["input1"]
+            num2=request.form["input2"]
+            condicionais=request.form["condicionais"]
+        # cálculos
+            soma = int(num1) + int(num2)
+            subt = int(num1) - int(num2)
+            mult = int(num1) * int(num2)
+            divi=int(num1) / int(num2)
 
-            if(request.form["opc"] == "soma"):
-               soma = int(num1) + int(num2)
+            if(condicionais == "soma"):    
                return str(soma)
-            elif(request.form["opc"] == "subt"):
-               subt = int(num1) - int(num2)
+            elif(condicionais == "subt"):
                return str(subt)
-            elif(request.form["opc"] == "mult"):
-               mult = int(num1) * int(num2)
+            elif(condicionais == "mult"):
                return str(mult)
             else:
-                divi=int(num1) / int(num2)
                 return str(divi)
         else:
-            return "Informe um valor válido!"
+            return "<h1>Favor, preencha todos os campos do formulario!<h1>"
 
 @app.errorhandler(404)
 def note_foud(erro):
